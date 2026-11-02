@@ -1312,7 +1312,7 @@ function setupMarks(){
   const b=btn(t,'تعليم نقطة',()=>{markOn=!markOn;b.classList.toggle('mk',markOn);main.querySelectorAll('canvas').forEach(c=>c.classList.toggle('marking',markOn))});
   btn(t,'مسح النقاط',()=>marks=[]);
   main.oninput=e=>{if(e.target.matches('.ctl input'))marks=[]};
-  t.addEventListener('click',e=>{if(e.target!==b)marks=[]});
+  t.addEventListener('click',e=>{const x=e.target;if(x===b||!x.matches('.btn')||x.matches('.main')||x.textContent.includes('إعادة'))return;marks=[]});
   main.querySelectorAll('canvas').forEach(cv=>{
     const take=e=>{if(!markOn)return;e.stopImmediatePropagation();e.preventDefault()};
     cv.addEventListener('pointerdown',take,true);
